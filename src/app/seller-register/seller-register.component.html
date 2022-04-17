@@ -1,0 +1,118 @@
+<section class="vh-1000 bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100 ">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Seller's Registration Form</h2>
+
+              <form autocomplete="off" #sellerForm="ngForm" (ngSubmit)="onSubmit(sellerForm)">
+                <!-- username -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="username" name="SellerUserName" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.SellerUserName" #SellerUserame="ngModel">
+                  <label class="form-label" for="username">Your User Name</label>
+                </div>
+                <!-- validations -->
+                <div *ngIf="sellerForm.submitted ||(SellerUserame.touched && SellerUserame.invalid)">
+                  <div class="text-danger" *ngIf="SellerUserame.errors?.['required']">User Name is required</div>
+                  <div  class="text-danger" *ngIf="SellerUserame.errors?.['minlength']">User Name should be of 3 characters minimum</div>
+                 </div>
+
+
+                <!-- password -->
+                <div class="form-outline mb-4">
+                  <input type="password" id="password" name="SellerPassword" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.SellerPassword" #SellerPassword="ngModel">
+                  <label class="form-label" for="password">Your Password</label>
+                </div>
+
+                <!-- validations -->
+                <div *ngIf="sellerForm.submitted ||(SellerPassword.touched && SellerPassword.invalid)">
+                  <div class="text-danger" *ngIf="SellerPassword.errors?.['required']">Password is required</div>
+                  <div  class="text-danger" *ngIf="SellerPassword.errors?.['minlength']">Password should be of 5 characters minimum</div>
+                 </div>
+
+                 <!--firstname  -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="firstnameseller" name="FirstName" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.FirstName" #FirstName="ngModel">
+                  <label class="form-label" for="firstnameseller">Your First Name</label>
+                </div>
+
+                <!-- validations -->
+                <div *ngIf="sellerForm.submitted ||(FirstName.touched)">
+                  <div class="text-danger" *ngIf="FirstName.errors?.['required']">first name is required</div>
+                 </div>
+
+                 <!-- lastname -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="lastnameseller" name="LastName" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.LastName" #LastName="ngModel">
+                  <label class="form-label" for="lastnameseller">Your Last Name</label>
+                </div>
+
+                <!-- DoB -->
+                <div class="form-outline mb-4">
+                  <input type="date" id="dateofbirth" name="Dateofbirth" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.DateOfBirth" #Dateofbirth="ngModel">
+                  <label class="form-label" for="date">Your Date Of Birth</label>
+                </div>
+
+                <!-- validations -->
+                <div *ngIf="sellerForm.submitted ||(Dateofbirth.touched && Dateofbirth.invalid)">
+                  <div class="text-danger" *ngIf="Dateofbirth.errors?.['required']">Date of Birth is required</div>
+                  <div  class="text-danger" *ngIf="Dateofbirth.errors?.['invalid']"> give the correct date of birth</div>
+                 </div>
+
+                 <!-- phoneNumber -->
+                <div class="form-outline mb-4">
+                  <input type="number" id="mobile" name="PhoneNo" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.PhoneNo" #PhoneNo="ngModel">
+                  <label class="form-label" for="mobile">Your Phone Number</label>
+                </div>
+
+                <!-- validations -->
+                <div *ngIf="sellerForm.submitted ||(PhoneNo.touched && PhoneNo.invalid)">
+                  <div class="text-danger" *ngIf="PhoneNo.errors?.['required']">Phone Number is required</div>
+                  <div class="text-danger" *ngIf="PhoneNo.errors?.['mobileNo']?.errors?.['pattern']">
+                  Mobile number should be 10 digits</div>
+                 </div>
+
+                 <!-- email -->
+                <div class="form-outline mb-4">
+                  <input type="email" id="email" name="EmailId" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.EmailId" #EmailId="ngModel">
+                  <label class="form-label" for="email">Your Email</label>
+                </div>
+
+                <!-- validations -->
+                <div *ngIf="sellerForm.submitted ||(EmailId.touched && EmailId.invalid)">
+                  <div class="text-danger" *ngIf="EmailId.errors?.['required']">Email is required</div>
+                 </div>
+
+                <div class="form-check d-flex justify-content-center mb-5">
+                  <input
+                    class="form-check-input me-2"
+                    type="checkbox"
+                    value=""
+                    id="Checkbox"
+                  required>
+                    <label class="form-check-label" for="checkbox">
+                      Agree to terms and conditions
+                    </label><a href="#!" class="text-body"><u>Terms of service</u></a>
+                    <div class="invalid-feedback">
+                      You must agree before registering.
+                    </div>
+                  </div>
+
+
+                <div class="d-flex justify-content-center">
+                  <button routerLink="/seller-dashboard" routerLinkActive="active" type="submit" class="btn btn-outline-success btn-block btn-lg gradient-custom">Register</button>
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="seller-login" class="fw-bold text-body"><u>Login here</u></a></p>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
