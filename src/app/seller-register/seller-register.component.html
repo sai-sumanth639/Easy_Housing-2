@@ -8,17 +8,18 @@
               <h2 class="text-uppercase text-center mb-5">Seller's Registration Form</h2>
 
               <form autocomplete="off" #sellerForm="ngForm" (ngSubmit)="onSubmit(sellerForm)">
+
                 <!-- username -->
                 <div class="form-outline mb-4">
                   <input type="text" id="username" name="SellerUserName" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.SellerUserName" #SellerUserame="ngModel">
                   <label class="form-label" for="username">Your User Name</label>
                 </div>
+
                 <!-- validations -->
                 <div *ngIf="sellerForm.submitted ||(SellerUserame.touched && SellerUserame.invalid)">
                   <div class="text-danger" *ngIf="SellerUserame.errors?.['required']">User Name is required</div>
                   <div  class="text-danger" *ngIf="SellerUserame.errors?.['minlength']">User Name should be of 3 characters minimum</div>
                  </div>
-
 
                 <!-- password -->
                 <div class="form-outline mb-4">
