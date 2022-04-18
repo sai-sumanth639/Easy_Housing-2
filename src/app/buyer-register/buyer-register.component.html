@@ -7,35 +7,43 @@
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Buyers's Registration Form</h2>
 
-              <form autocomplete="off" #buyerForm="ngForm" (ngSubmit)="onSubmit(buyerForm)">
+              <form novalidate autocomplete="off" #buyerForm="ngForm" (ngSubmit)="onSubmit(buyerForm)">
 
                 <!--username  -->
-                <div class="form-outline mb-4">
-                  <input type="text" id="username" name="BuyerUserName" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.BuyerUserName" #BuyerUsername="ngModel">
+                <div class="form-outline">
+                  <input type="text" id="username" name="BuyerUserName" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.BuyerUserName" #BuyerUsername="ngModel"
+                  required
+                  minlength="3"
+                  >
                   <label class="form-label" for="username">Your User Name</label>
                 </div>
 
                 <!-- validations -->
-                <div *ngIf="buyerForm.submitted ||(BuyerUsername.touched || BuyerUsername.invalid)">
+                <div *ngIf="buyerForm.submitted ||(BuyerUsername.touched && BuyerUsername.invalid)">
                   <div class="text-danger" *ngIf="BuyerUsername.errors?.['required']">User Name is required</div>
                   <div  class="text-danger" *ngIf="BuyerUsername.errors?.['minlength']">User Name should be of 3 characters minimum</div>
                  </div>
 
                  <!-- password -->
-                <div class="form-outline mb-4">
-                  <input type="password" id="password" name="BuyerPassword" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.BuyerPassword" #BuyerPassword="ngModel">
+                <div class="form-outline ">
+                  <input type="password" id="password" name="BuyerPassword" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.BuyerPassword" #BuyerPassword="ngModel"
+                  required
+                  minlength="5"
+                  >
                   <label class="form-label" for="password">Your Password</label>
                 </div>
 
                 <!-- validation -->
-                <div *ngIf="buyerForm.submitted ||(BuyerPassword.touched || BuyerPassword.invalid)">
+                <div *ngIf="buyerForm.submitted ||(BuyerPassword.touched && BuyerPassword.invalid)">
                   <div class="text-danger" *ngIf="BuyerPassword.errors?.['required']">Password is required</div>
                   <div  class="text-danger" *ngIf="BuyerPassword.errors?.['minlength']">Password should be of 5 characters minimum</div>
                  </div>
 
                 <!-- firstname -->
-                <div class="form-outline mb-4">
-                  <input type="text" id="firstnamebuyer" name="FirstName" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.FirstName" #FirstName="ngModel">
+                <div class="form-outline">
+                  <input type="text" id="firstnamebuyer" name="FirstName" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.FirstName" #FirstName="ngModel"
+                  required
+                  >
                   <label class="form-label" for="firstnamebuyer">Your First Name</label>
                 </div>
 
@@ -45,44 +53,55 @@
                  </div>
 
                 <!-- lastname -->
-                <div class="form-outline mb-4">
-                  <input type="text" id="lastnamebuyer" name="LastName" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.LastName" #LastName="ngModel">
+                <div class="form-outline">
+                  <input type="text" id="lastnamebuyer" name="LastName" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.LastName" #LastName="ngModel"
+                  required
+                  >
                   <label class="form-label" for="lastnamebuyer">Your Last Name</label>
                 </div>
 
                 <!-- DoB -->
                 <div class="form-outline mb-4">
-                  <input type="date" id="dateofbirth" name="Dateofbirth" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.DateOfBirth" #Dateofbirth="ngModel">
+                  <input type="date" id="dateofbirth" name="Dateofbirth" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.DateOfBirth" #Dateofbirth="ngModel"
+                  required
+                  >
                   <label class="form-label" for="date">Your Date Of Birth</label>
                 </div>
 
                 <!-- validation -->
-                <div *ngIf="buyerForm.submitted ||(Dateofbirth.touched || Dateofbirth.invalid)">
+                <div *ngIf="buyerForm.submitted ||(Dateofbirth.touched && Dateofbirth.invalid)">
                   <div class="text-danger" *ngIf="Dateofbirth.errors?.['required']">Date of Birth is required</div>
                   <div  class="text-danger" *ngIf="Dateofbirth.errors?.['invalid']"> give the correct date of birth</div>
                  </div>
 
                 <!-- phoneno -->
-                <div class="form-outline mb-4">
-                  <input type="number" id="mobile" name="PhoneNo" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.PhoneNo" #PhoneNo="ngModel">
+                <div class="form-outline ">
+                  <input type="text" id="mobile" name="PhoneNo" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.PhoneNo" #PhoneNo="ngModel"
+                  required
+                  minlength="10"
+                  maxlength="10"
+                  >
                   <label class="form-label" for="mobile">Your Phone Number</label>
                 </div>
 
                 <!-- validations -->
-                <div *ngIf="buyerForm.submitted ||(PhoneNo.touched || PhoneNo.invalid)">
+                <div *ngIf="buyerForm.submitted ||(PhoneNo.touched && PhoneNo.invalid)">
                   <div class="text-danger" *ngIf="PhoneNo.errors?.['required']">Phone Number is required</div>
-                  <div class="text-danger" *ngIf="PhoneNo.errors?.['mobileNo']?.errors?.['pattern']">
+                  <div class="text-danger" *ngIf="PhoneNo.errors?.['minlength']">
                   Mobile number should be 10 digits</div>
                  </div>
 
                 <!-- emailid -->
-                <div class="form-outline mb-4">
-                  <input type="email" id="email" name="EmailId" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.EmailId" #EmailId="ngModel">
+                <div class="form-outline">
+                  <input type="email" id="email" name="EmailId" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.EmailId" #EmailId="ngModel"
+                  required
+                  [class.invalid]="EmailId.invalid"
+                  >
                   <label class="form-label" for="email">Your Email</label>
                 </div>
 
                 <!-- validations -->
-                <div *ngIf="buyerForm.submitted ||(EmailId.touched || EmailId.invalid)">
+                <div *ngIf="buyerForm.submitted ||(EmailId.touched && EmailId.invalid)">
                   <div class="text-danger" *ngIf="EmailId.errors?.['required']">Email is required</div>
                  </div>
 
@@ -92,9 +111,10 @@
                     type="checkbox"
                     value=""
                     id="Checkbox"
-                  required>
+                  required
+                  >
                   <label class="form-check-label" for="Checkbox">
-                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
+                    I Agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
                   </label>
                   <div class="invalid-feedback">
                     You must agree before registering.
@@ -102,7 +122,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                  <button routerLink="/buyer-dashboard" routerLinkActive="active" type="submit" class="btn btn-outline-success btn-block btn-lg gradient-custom">Register</button>
+                <button routerLink="/buyer-dashboard" routerLinkActive="active" type="submit" [disabled]="buyerForm.invalid" class="btn btn-outline-success btn-block btn-lg gradient-custom">Register</button>
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="buyer-login" class="fw-bold text-body"><u>Login here</u></a></p>

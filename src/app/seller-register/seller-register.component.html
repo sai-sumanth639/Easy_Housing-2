@@ -7,11 +7,14 @@
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Seller's Registration Form</h2>
 
-              <form autocomplete="off" #sellerForm="ngForm" (ngSubmit)="onSubmit(sellerForm)">
+              <form novalidate autocomplete="off" #sellerForm="ngForm" (ngSubmit)="onSubmit(sellerForm)">
 
                 <!-- username -->
-                <div class="form-outline mb-4">
-                  <input type="text" id="username" name="SellerUserName" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.SellerUserName" #SellerUserame="ngModel">
+                <div class="form-outline">
+                  <input type="text" id="username" name="SellerUserName" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.SellerUserName" #SellerUserame="ngModel"
+                   required
+                   minlength="3"
+                   >
                   <label class="form-label" for="username">Your User Name</label>
                 </div>
 
@@ -22,8 +25,11 @@
                  </div>
 
                 <!-- password -->
-                <div class="form-outline mb-4">
-                  <input type="password" id="password" name="SellerPassword" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.SellerPassword" #SellerPassword="ngModel">
+                <div class="form-outline">
+                  <input type="password" id="password" name="SellerPassword" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.SellerPassword" #SellerPassword="ngModel"
+                   required
+                   minlength="5"
+                   >
                   <label class="form-label" for="password">Your Password</label>
                 </div>
 
@@ -34,8 +40,10 @@
                  </div>
 
                  <!--firstname  -->
-                <div class="form-outline mb-4">
-                  <input type="text" id="firstnameseller" name="FirstName" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.FirstName" #FirstName="ngModel">
+                <div class="form-outline ">
+                  <input type="text" id="firstnameseller" name="FirstName" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.FirstName" #FirstName="ngModel"
+                  required
+                  >
                   <label class="form-label" for="firstnameseller">Your First Name</label>
                 </div>
 
@@ -45,14 +53,18 @@
                  </div>
 
                  <!-- lastname -->
-                <div class="form-outline mb-4">
-                  <input type="text" id="lastnameseller" name="LastName" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.LastName" #LastName="ngModel">
+                <div class="form-outline ">
+                  <input type="text" id="lastnameseller" name="LastName" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.LastName" #LastName="ngModel"
+                  required
+                  >
                   <label class="form-label" for="lastnameseller">Your Last Name</label>
                 </div>
 
                 <!-- DoB -->
                 <div class="form-outline mb-4">
-                  <input type="date" id="dateofbirth" name="Dateofbirth" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.DateOfBirth" #Dateofbirth="ngModel">
+                  <input type="date" id="dateofbirth" name="Dateofbirth" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.DateOfBirth" #Dateofbirth="ngModel"
+                  required
+                  >
                   <label class="form-label" for="date">Your Date Of Birth</label>
                 </div>
 
@@ -63,21 +75,27 @@
                  </div>
 
                  <!-- phoneNumber -->
-                <div class="form-outline mb-4">
-                  <input type="number" id="mobile" name="PhoneNo" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.PhoneNo" #PhoneNo="ngModel">
+                <div class="form-outline ">
+                  <input type="text" id="mobile" name="PhoneNo" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.PhoneNo" #PhoneNo="ngModel"
+                  required
+                  minlength="10"
+                  maxlength="10"
+                  >
                   <label class="form-label" for="mobile">Your Phone Number</label>
                 </div>
 
                 <!-- validations -->
                 <div *ngIf="sellerForm.submitted ||(PhoneNo.touched && PhoneNo.invalid)">
                   <div class="text-danger" *ngIf="PhoneNo.errors?.['required']">Phone Number is required</div>
-                  <div class="text-danger" *ngIf="PhoneNo.errors?.['mobileNo']?.errors?.['pattern']">
+                  <div class="text-danger" *ngIf="PhoneNo.errors?.['minlength']">
                   Mobile number should be 10 digits</div>
                  </div>
 
-                 <!-- email -->
-                <div class="form-outline mb-4">
-                  <input type="email" id="email" name="EmailId" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.EmailId" #EmailId="ngModel">
+                 <!-- emailid-->
+                <div class="form-outline ">
+                  <input type="email" id="email" name="EmailId" class="form-control form-control-lg" [(ngModel)]="sellersService.sellerData.EmailId" #EmailId="ngModel"
+                  required
+                  >
                   <label class="form-label" for="email">Your Email</label>
                 </div>
 
@@ -92,9 +110,10 @@
                     type="checkbox"
                     value=""
                     id="Checkbox"
-                  required>
+                  required
+                  >
                     <label class="form-check-label" for="checkbox">
-                      Agree to terms and conditions
+                     I Agree to terms and conditions
                     </label><a href="#!" class="text-body"><u>Terms of service</u></a>
                     <div class="invalid-feedback">
                       You must agree before registering.
@@ -103,7 +122,7 @@
 
 
                 <div class="d-flex justify-content-center">
-                  <button routerLink="/seller-dashboard" routerLinkActive="active" type="submit" class="btn btn-outline-success btn-block btn-lg gradient-custom">Register</button>
+                  <button routerLink="/seller-dashboard" routerLinkActive="active" type="submit" [disabled]="sellerForm.invalid" class="btn btn-outline-success btn-block btn-lg gradient-custom">Register</button>
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="seller-login" class="fw-bold text-body"><u>Login here</u></a></p>

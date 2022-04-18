@@ -28,6 +28,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents=[BuyerComponent,SellerComponent,BuyerLoginComponent,BuyerRegisterComponent,SellerLoginComponent,SellerRegisterComponent]
+export const routingComponents=[BuyerComponent,SellerComponent,BuyerDashboardComponent,BuyerLoginComponent,BuyerRegisterComponent,SellerLoginComponent,SellerRegisterComponent,SellerDashboardComponent]
 
 

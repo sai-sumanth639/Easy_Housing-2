@@ -7,18 +7,36 @@
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Buyers's Login</h2>
 
-              <form>
+              <form novalidate autocomplete="off" #buyerForm="ngForm" (ngSubmit)="onSubmit(buyerForm)">
 
-                <div class="form-outline mb-4">
-                  <input type="text" id="username" class="form-control form-control-lg" />
+                <!--username  -->
+                <div class="form-outline">
+                  <input type="text" id="username" name="BuyerUserName" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.BuyerUserName" #BuyerUsername="ngModel"
+                  required
+                  [class.invalid]="BuyerUsername.invalid"
+                  minlength="3">
                   <label class="form-label" for="username">Your User Name</label>
                 </div>
 
-                <div class="form-outline mb-4">
-                  <input type="password" id="Password" class="form-control form-control-lg" />
-                  <label class="form-label" for="Password">Your Password</label>
+                <!-- validations -->
+                <div *ngIf="buyerForm.submitted ||(BuyerUsername.touched && BuyerUsername.invalid)">
+                  <div class="text-danger" *ngIf="BuyerUsername.errors?.['required']">User Name is required</div>
+                  <div  class="text-danger" *ngIf="BuyerUsername.errors?.['minlength']">User Name should be of 3 characters minimum</div>
+                 </div>
+
+                 <!-- password -->
+                <div class="form-outline">
+                  <input type="password" id="password" name="BuyerPassword" class="form-control form-control-lg" [(ngModel)]="buyersService.buyerData.BuyerPassword" #BuyerPassword="ngModel"
+                  required
+                  minlength="5">
+                  <label class="form-label" for="password">Your Password</label>
                 </div>
 
+                <!-- validation -->
+                <div *ngIf="buyerForm.submitted ||(BuyerPassword.touched && BuyerPassword.invalid)">
+                  <div class="text-danger" *ngIf="BuyerPassword.errors?.['required']">Password is required</div>
+                  <div  class="text-danger" *ngIf="BuyerPassword.errors?.['minlength']">Password should be of 5 characters minimum</div>
+                 </div>
                 <div class="form-check d-flex justify-content-center mb-5">
                   <input
                     class="form-check-input me-2"
@@ -32,7 +50,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                  <button routerLink="/buyer-dashboard" routerLinkActive="active" type="button" class="btn btn-outline-success btn-block btn-lg gradient-custom">Login</button>
+                  <button routerLink="/buyer-dashboard" routerLinkActive="active" type="submit" [disabled]="buyerForm.invalid" class="btn btn-outline-success btn-block btn-lg gradient-custom">Login</button>
                 </div>
               </form>
             </div>

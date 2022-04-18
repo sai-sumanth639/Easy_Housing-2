@@ -11,9 +11,11 @@ export class BuyersService {
   buyerData: Buyer = new Buyer();
 
   constructor(private http: HttpClient) { }
-  baseUrl: string="https://localhost:44323/api/buyers/";
+  readonly baseUrl: string="https://localhost:44323/api/buyers/";
 
-  
+
+
+
   registerBuyer()
   {
     console.log(this.buyerData);

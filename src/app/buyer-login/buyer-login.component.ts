@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BuyersService } from '../services/buyers.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-buyer-login',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuyerLoginComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit(): void {
+  constructor(public buyersService:BuyersService) { }
+
+  ngOnInit(): void {}
+
+    onSubmit(buyerForm: NgForm) {
+      this.buyersService.registerBuyer().subscribe({
+        next: (data) => { },
+        complete: () => {console.log("registrattion successful");},
+
+        error: (err) => { console.log("Unable to register seller" + err); }
+      })
   }
-
 }

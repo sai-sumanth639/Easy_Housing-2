@@ -18,7 +18,7 @@ export class SellerRegisterComponent implements OnInit {
   onSubmit(sellerForm: NgForm) {
     this.sellersService.registerSeller().subscribe({
       next: (data) => { },
-      complete: () => {console.log("registrattion successful");},
+      complete: () => {console.log("registration successful");},
       //complete: () => { this.router.navigate(['/seller/']) }, //On successfull Complete, redirect to another page
       error: (err) => { console.log("Unable to register seller" + err); }
     })
